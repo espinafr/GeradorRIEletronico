@@ -3,10 +3,23 @@ import argparse
 from classes.protocolo import Protocolo
 from classes.tabela import Tabela
 
+def _dados_pessoa(pessoa):
+    return [
+        pessoa.cpf,
+        pessoa.genero,
+        "RG",
+        pessoa.cpf,
+        "SSP",
+        "SP",
+        pessoa.nome,
+        "brasileiro",
+        "solteiro",
+        str(pessoa.endereco),
+    ]
 
 def exibir_dados(protocolo):
-    Tabela("Outorgante", ["Nome", "CPF", "Gênero", "Endereço"], [[protocolo.outorgante.nome, protocolo.outorgante.cpf, protocolo.outorgante.genero, str(protocolo.outorgante.endereco)]]).exibir()
-    Tabela("Outorgado", ["Nome", "CPF", "Gênero", "Endereço"], [[protocolo.outorgado.nome, protocolo.outorgado.cpf, protocolo.outorgado.genero, str(protocolo.outorgado.endereco)]]).exibir()
+    Tabela("Outorgante", ["Nome"], [[protocolo.outorgante.nome]]).exibir()
+    Tabela("Outorgado", ["Nome", "CPF", "Endereço"], [[protocolo.outorgado.nome, protocolo.outorgado.cpf, str(protocolo.outorgado.endereco)]]).exibir()
     Tabela(
         "Apresentante (outorgado)",
         ["Nome", "CPF", "Endereço"],
@@ -23,7 +36,8 @@ def exibir_dados(protocolo):
             protocolo.outorgado.agencia,
             protocolo.outorgado.conta,
             protocolo.outorgado.chavePix,
-        ]]
+        ]],
+        vertical=True
     ).exibir()
     Tabela(
         "Imóvel",
@@ -37,6 +51,20 @@ def exibir_dados(protocolo):
             protocolo.imovel.tipo,
         ]]
     ).exibir()
+    headers_pessoa = [
+        "CPF",
+        "Gênero",
+        "Tipo de doc",
+        "Doc Identificação",
+        "Emissor Doc",
+        "UF Doc.",
+        "Nome",
+        "Nacionalidade",
+        "Estado Civil",
+        "Endereço",
+    ]
+    Tabela("Outorgante (Info pessoa)", headers_pessoa, [_dados_pessoa(protocolo.outorgante)], vertical=True).exibir()
+    Tabela("Outorgado (Info pessoa)", headers_pessoa, [_dados_pessoa(protocolo.outorgado)], vertical=True).exibir()
     input("Pressione Enter para sair...")
 
 def main():
