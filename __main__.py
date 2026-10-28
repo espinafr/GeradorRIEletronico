@@ -19,7 +19,7 @@ def _dados_pessoa(pessoa):
 
 def exibir_dados(protocolo):
     Tabela("Outorgante", ["Nome"], [[protocolo.outorgante.nome]]).exibir()
-    Tabela("Outorgado", ["Nome", "CPF", "Endereço"], [[protocolo.outorgado.nome, protocolo.outorgado.cpf, str(protocolo.outorgado.endereco)]]).exibir()
+    Tabela("Outorgado", ["Nome"], [[protocolo.outorgado.nome]]).exibir()
     Tabela(
         "Apresentante (outorgado)",
         ["Nome", "CPF", "Endereço"],
