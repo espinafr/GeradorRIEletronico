@@ -32,7 +32,7 @@ class Endereco():
         self.tipo = random.choice(["Apartamento", "Casa", "Chácara", "Lote", "Fazenda"])
 
     def __str__(self):
-        return f"{self.rua}, {self.numero},  {self.bairro} - {self.cidade}/{self.estado} | CEP: {self.cep}"
+        return f"{self.rua}, {self.numero}, {self.bairro} - {self.cidade}/{self.estado} | CEP: {self.cep}"
 
     def __repr__(self):
         return {
